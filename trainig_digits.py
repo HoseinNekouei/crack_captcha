@@ -2,7 +2,8 @@ import cv2 as cv
 import numpy as np
 import glob
 from sklearn.model_selection import train_test_split
-
+from sklearn.preprocessing import LabelEncoder
+from keras.utils import to_categorical
 
 def preprocessing(infoPath):
     data = []
@@ -27,7 +28,13 @@ def preprocessing(infoPath):
     x_train, x_test, y_train, y_test = train_test_split(
         data, labels, test_size=0.2, random_state=42)
 
-    print(x_train.shape)
+    le = LabelEncoder()
+    y_train = le.fit_transform(y_train)
+    y_test = le.transform(y_test)
+
+    y_train = to_categorical(y_train)
+    y_test = to_categorical(y_test)
+
     return x_train, x_test, y_train, y_test
 
 
