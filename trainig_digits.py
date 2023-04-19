@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical
 
-def preprocessing(infoPath):
+def load_data(infoPath):
     data = []
     labels = []
 
@@ -38,5 +38,5 @@ def preprocessing(infoPath):
     return x_train, x_test, y_train, y_test
 
 
-x_train, x_test, y_train, y_test = preprocessing(
+x_train, x_test, y_train, y_test = load_data(
     'crack_captcha\\captcha\\*\\*')
